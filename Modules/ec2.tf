@@ -1,7 +1,8 @@
-resource "aws_instance" "web" {
-  ami           = lookup(var.ami_id, var.region)
-  instance_type = var.instance_type
+resource "aws_instance" "ec2instance" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
 
-# Public Subnet assign to instance
-  subnet_id     = aws_subnet.public_1.id
+  tags = {
+    Name = "Kering Test"
+  }
 }
